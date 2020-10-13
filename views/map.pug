@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  #controls.container.pt-3
+    form#optionForm
+      .row
+        .form-group.col
+          select#langcodeselect.form-control(required)
+            option(value='' selected disabled) -- Langues --
+            each val in langCodes
+              option(value=val[0])=val[1]
+          .invalid-feedback Sélectionnez une langue.
+        .form-group.col
+          .row
+            label.vert-center.text-center.margin-r Age
+            #agegroupradio.btn-group.btn-group-toggle(data-toggle="buttons")
+              each val in ageGroups
+                label.btn.btn-secondary(for=val)=val
+                  input(type="radio" name="agegroup" value=val id=val)
+        //- .form-group.col
+        //-   select#agegroupselect.form-control(required)
+        //-     option(value='' selected disabled) -- Catégories d'âge --
+        //-     each val in ageGroups
+        //-       option(value=val)=val
+        .form-group.col.vert-center
+          input#nativecheckbox.form-check-input(type='checkbox')
+          .text-center
+            label.form-check-label(for='nativecheckbox') Langue maternelle
+  #map
+  #sidepanel
+      #panelcontainer
+          button#closepanel.btn.btn-secondary Close
+          #panelcontent
+  script(src='javascripts/map.js')
