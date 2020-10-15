@@ -1,24 +1,10 @@
-version: '3'
-# Define the services/containers to be run
+version: "3.4"
 services:
-  myapp: #name of your service
-    build: ./ # specify the directory of the Dockerfile
-    ports:
-      - "3000:3000" #specify ports forwarding
-    links:
-      - database # link this service to the database service
-    volumes:
-      - .:/usr/src/app
-    depends_on:
-      - database
-  database: # name of the service
-    image: mongo # specify image to build container from
-
-version: "3"
-
-services:
-  languagesapp:
-    build: ./
+  app:
+    build:
+      context: ./
+    command: node /srv/app/bin/www
+    container_name: language_app
     depends_on:
       - db
     restart: unless-stopped
@@ -26,7 +12,7 @@ services:
     environment:
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
-      MONGO_USER: ${MONGO_NAME}
+      MONGO_USER: ${MONGO_USER}
       MONGO_PWD: ${MONGO_PWD}
       MONGO_DB: ${MONGO_DB}
     networks:
@@ -37,16 +23,20 @@ services:
       - "3000:3000"
 
   db:
-    image: mongo
+    image: mongo:latest
     container_name: language_db
     restart: unless-stopped
     env_file: .env
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOTUSER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOTPWD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+      MONGO_NON_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_NON_ROOT_PASSWORD: ${MONGO_PWD}
     networks:
       - languages-network
     volumes:
+      - ./mongo_init/init.sh:/docker-entrypoint-initdb.d/init.sh:ro
       - languages:/data/db
     ports:
       - "27017:27017"

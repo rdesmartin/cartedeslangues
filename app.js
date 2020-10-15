@@ -18,12 +18,13 @@ const user = process.env.MONGO_USER
 const pwd = process.env.MONGO_PWD
 
 var client = mongoose.connect(`mongodb://${user}:${pwd}@${host}:${port}/${db}`, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(() => {
-    console.log('Connected to mongodb')
-})
-.catch(err => {
+  .then(() => {
+    console.log('Connected to mongodb');
+  })
+  .catch(err => {
+    console.log("Error: init app:");
     console.log(err);
-})
+  });
 
 // init express app
 var app = express();
