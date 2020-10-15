@@ -6,17 +6,19 @@ block content
       .row
         .form-group.col
           select#langcodeselect.form-control(required)
-            option(value='' selected disabled) -- Langues --
+            //- option(value='' selected disabled) -- Langues --
             each val in langCodes
               option(value=val[0])=val[1]
-          .invalid-feedback Sélectionnez une langue.
         .form-group.col
           .row
             label.vert-center.text-center.margin-r Age
             #agegroupradio.btn-group.btn-group-toggle(data-toggle="buttons")
-              each val in ageGroups
-                label.btn.btn-secondary(for=val)=val
-                  input(type="radio" name="agegroup" value=val id=val)
+                label.btn.btn-secondary.active(for="15-34")="15-34"
+                  input(type="radio" name="agegroup" checked value="15-34" id="15-34")
+                label.btn.btn-secondary(for="35-54")="35-54"
+                  input(type="radio" name="agegroup" value="35-54" id="35-54")
+                label.btn.btn-secondary(for="55+")="55+"
+                  input(type="radio" name="agegroup" value="55+" id="55+")
         //- .form-group.col
         //-   select#agegroupselect.form-control(required)
         //-     option(value='' selected disabled) -- Catégories d'âge --

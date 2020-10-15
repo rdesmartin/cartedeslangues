@@ -5,7 +5,7 @@ $(document).ready(() => {
   var panelcontent = document.getElementById('panelcontent');
 
   const createTable = (title, data) => {
-    content = `<h3>${title}</h3>`;
+    content = `<h5>${title}</h5>`;
     content += '<table style="width:100%">'
     content += `<tr><th>Langue</th><th>Pourcentage</th></tr>`
     for (const d of data) {
@@ -19,6 +19,7 @@ $(document).ready(() => {
   }
 
   const updateSidePanel = () => {
+    if (!currentCountry) return;
     // get optionsform values
     // get country data according to options
     // show bar chart with language names && percentage of population who speaks it
@@ -165,6 +166,7 @@ $(document).ready(() => {
       style: style,
       onEachFeature: onEachFeature
     }).addTo(mymap);
+    updateMap();
   })
 
 
@@ -189,6 +191,9 @@ $(document).ready(() => {
   const updateMap = () => {
     // get form values
     var values = getFormValues()
+    if (!values.langCode || !values.ageGroup) {
+      return;
+    }
     // send request
     $.get(`/langdata?native=${encodeURIComponent(values.native)}&langCode=${encodeURIComponent(values.langCode)}&ageGroup=${encodeURIComponent(values.ageGroup)}`, data => {
       currentData = data;
