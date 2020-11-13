@@ -30,6 +30,16 @@ html, body {
   padding: 1rem;
 }
 
+#closepanelContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+#closepanel {
+  align-self: flex-end;
+}
+
 .vert-center {
   display: flex;
   flex-direction: column;
