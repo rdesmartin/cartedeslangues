@@ -1,39 +1,3 @@
-var langCodes = {
-      "en": "Anglais",
-      "de": "Allemand",
-      "fr": "Français",
-      "es": "Espagnol",
-      "it": "Italien",
-      "pl": "Polonais",
-      "nl": "Hollandais",
-      "ro": "Roumain",
-      "ru": "Russe",
-      "cs": "Tchèque",
-      "hu": "Hongrois",
-      "pt": "Portugais",
-      "el": "Grec",
-      "sv": "Suédois",
-      "bg": "Bulgare",
-      "ca": "Catalan",
-      "da": "Danois",
-      "sk": "Slovaque",
-      "fi": "Finnois",
-      "ar": "Arabe",
-      "lt": "Lithuanien",
-      "tr": "Turc",
-      "sl": "Slovène",
-      "lv": "Letton",
-      "hv": "Croate",
-      "et": "Estonien",
-      "lb": "Luxembourgeois",
-      "ur": "Ourdou",
-      "eu": "Basque",
-      "ga": "Irlandais",
-      "mt": "Maltais",
-      "gl": "Gallicien",
-      "cy": "Gallois"
-}
-
 $(document).ready(() => {
 
   // Side panel functions
@@ -99,7 +63,9 @@ $(document).ready(() => {
       data = data.filter(el => el.native === formVal.native && el.ageGroup === formVal.ageGroup)
       data = data.sort((a, b) => b.value - a.value)
 
-      var title = `5 langues ${formVal.native ? 'maternelles' : 'parlées'} les plus courantes (ages : ${formVal.ageGroup})`
+      var title = `5 langues ${formVal.native ? 'maternelles' : 'parlées'} les
+       plus courantes en ${countryCodes[currentCountry.ISO_A3]}
+       (${formVal.ageGroup} ans)`
       chartTitle.innerHTML = title
 
       removeChartData()
@@ -126,8 +92,8 @@ $(document).ready(() => {
     minZoom: 4,
     maxZoom: 6,
     maxBounds: [
-      [70, -27],
-      [30, 40]
+      [80, -50],
+      [0, 70]
     ]
   }).setView([58, 5], 4)
 

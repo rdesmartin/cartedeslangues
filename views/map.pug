@@ -4,13 +4,13 @@ block content
   #controls.container.pt-3
     form#optionForm
       .row
-        .form-group.col
+        .form-group.col-12.col-lg-4
           select#langcodeselect.form-control(required)
             //- option(value='' selected disabled) -- Langues --
             each val in langCodes
               option(value=val[0])=val[1]
-        .form-group.col
-          .row
+        .form-group.col-12.col-lg-4
+          .row.justify-content-center
             label.vert-center.text-center.margin-r Age
             #agegroupradio.btn-group.btn-group-toggle(data-toggle="buttons")
                 label.btn.btn-secondary.active(for="15-34")="15-34"
@@ -24,15 +24,24 @@ block content
         //-     option(value='' selected disabled) -- Catégories d'âge --
         //-     each val in ageGroups
         //-       option(value=val)=val
-        .form-group.col.vert-center
-          input#nativecheckbox.form-check-input(type='checkbox')
-          .text-center
-            label.form-check-label(for='nativecheckbox') Langue maternelle
+        .form-group.col-12.col-lg-4.d-flex.justify-content-center
+          .vert-center
+            input#nativecheckbox.form-check-input(type='checkbox')
+            .text-center
+              label.form-check-label(for='nativecheckbox') Langue maternelle
   #map
   #sidepanel
       #panelcontainer
           #closepanelContainer
-              button#closepanel.btn.btn-secondary Fermer
-          h3#chartTitle
+            btn
+              img#closepanel(src='/images/x.svg')
+          p#chartTitle
           canvas#chart
+  #footer
+    p 
+      | Source : 
+      a(href='https://data.europa.eu/euodp/fr/data/dataset/S1049_77_1_EBS386', target='_blank') Special Eurobarometer 386: Europeans and their Languages (2012) 
+      | | 
+      a(href='/info') Info 
+  script(src='javascripts/codes.js')
   script(src='javascripts/map.js')

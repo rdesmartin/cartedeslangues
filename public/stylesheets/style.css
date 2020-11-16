@@ -1,7 +1,3 @@
-a {
-  color: #00B7FF;
-}
-
 html, body {
   max-width: 100vw;
   overflow: hidden;
@@ -40,11 +36,19 @@ html, body {
   align-self: flex-end;
 }
 
+#closepanel:hover {
+  cursor: pointer
+}
+
 .vert-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+#chartTitle {
+  font-weight: bold;
 }
 
 .text-center {
@@ -53,4 +57,16 @@ html, body {
 
 .margin-r {
   margin-right: 0.5rem
+}
+
+a a:hover a:visited {
+  color: rgb(33, 37, 41)!important
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  margin: 0 10px;
+  z-index: 1000;
+  font-size: 12px;
 }
