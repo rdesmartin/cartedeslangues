@@ -109,11 +109,12 @@ $(document).ready(() => {
   }).addTo(mymap)
 
   const defaultColor = (code) => {
-    if (code.length < 3) return console.error("invalid country code: " + code)
-    var range = [0, 256]
-    var g = (i) => ~~((code[i].charCodeAt(0) - 'A'.charCodeAt(0)) * (range[1] - range[0]) / 26) + range[0]
-    var color = "rgb(" + g(0) + "," + g(1) + "," + g(2) +")"
-    return color
+    // if (code.length < 3) return console.error("invalid country code: " + code)
+    // var range = [0, 256]
+    // var g = (i) => ~~((code[i].charCodeAt(0) - 'A'.charCodeAt(0)) * (range[1] - range[0]) / 26) + range[0]
+    // var color = "rgb(" + g(0) + "," + g(1) + "," + g(2) +")"
+    // return color
+    return "#FFF"
   }
 
   const generateColorScale = (value) => {
